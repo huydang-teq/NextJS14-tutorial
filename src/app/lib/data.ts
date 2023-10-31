@@ -12,12 +12,8 @@ import { formatCurrency } from "./utils";
 import { unstable_noStore as noStore } from "next/cache";
 
 export async function fetchRevenue() {
-  // Add noStore() here to prevent the response from being cached.
-  // This is equivalent to in fetch(..., {cache: 'no-store'}).
-  noStore();
-  console.log("fetch revenue:");
-  // Add noStore() here prevent the response from being cached.
-  // This is equivalent to in fetch(..., {cache: 'no-store'}).
+  // noStore();
+
 
   try {
     // Artificially delay a response for demo purposes.
@@ -38,9 +34,7 @@ export async function fetchRevenue() {
 }
 
 export async function fetchLatestInvoices() {
-  // Add noStore() here to prevent the response from being cached.
-  // This is equivalent to in fetch(..., {cache: 'no-store'}).
-  noStore();
+  // noStore();
   try {
     const data = await sql<LatestInvoiceRaw>`
       SELECT invoices.amount, customers.name, customers.image_url, customers.email, invoices.id
@@ -61,9 +55,7 @@ export async function fetchLatestInvoices() {
 }
 
 export async function fetchCardData() {
-  // Add noStore() here to prevent the response from being cached.
-  // This is equivalent to in fetch(..., {cache: 'no-store'}).
-  noStore();
+  // noStore();
   try {
     // You can probably combine these into a single SQL query
     // However, we are intentionally splitting them to demonstrate
@@ -103,8 +95,6 @@ export async function fetchFilteredInvoices(
   query: string,
   currentPage: number
 ) {
-  // Add noStore() here to prevent the response from being cached.
-  // This is equivalent to in fetch(..., {cache: 'no-store'}).
   const offset = (currentPage - 1) * ITEMS_PER_PAGE;
 
   try {
@@ -137,8 +127,6 @@ export async function fetchFilteredInvoices(
 }
 
 export async function fetchInvoicesPages(query: string) {
-  // Add noStore() here to prevent the response from being cached.
-  // This is equivalent to in fetch(..., {cache: 'no-store'}).
   try {
     const count = await sql`SELECT COUNT(*)
     FROM invoices
@@ -160,8 +148,6 @@ export async function fetchInvoicesPages(query: string) {
 }
 
 export async function fetchInvoiceById(id: string) {
-  // Add noStore() here to prevent the response from being cached.
-  // This is equivalent to in fetch(..., {cache: 'no-store'}).
 
   try {
     const data = await sql<InvoiceForm>`
@@ -187,8 +173,6 @@ export async function fetchInvoiceById(id: string) {
 }
 
 export async function fetchCustomers() {
-  // Add noStore() here to prevent the response from being cached.
-  // This is equivalent to in fetch(..., {cache: 'no-store'}).
   try {
     const data = await sql<CustomerField>`
       SELECT
@@ -207,8 +191,6 @@ export async function fetchCustomers() {
 }
 
 export async function fetchFilteredCustomers(query: string) {
-  // Add noStore() here to prevent the response from being cached.
-  // This is equivalent to in fetch(..., {cache: 'no-store'}).
   try {
     const data = await sql<CustomersTable>`
 		SELECT
@@ -242,8 +224,6 @@ export async function fetchFilteredCustomers(query: string) {
 }
 
 export async function getUser(email: string) {
-  // Add noStore() here to prevent the response from being cached.
-  // This is equivalent to in fetch(..., {cache: 'no-store'}).
   try {
     const user = await sql`SELECT * from USERS where email=${email}`;
     return user.rows[0] as User;
