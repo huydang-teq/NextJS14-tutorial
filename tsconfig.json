@@ -19,7 +19,8 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@src/*": ["./src/*"]
     }
   },
   "include": [
@@ -27,7 +28,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "app/lib/placeholder-data.js",
+    "src/app/lib/placeholder-data.js",
     "scripts/seed.js"
   ],
   "exclude": ["node_modules"]
